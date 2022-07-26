@@ -1,0 +1,170 @@
+// ==UserScript==
+// @name         binance_sell_js
+// @namespace    http://tampermonkey.net/
+// @version      0.1
+// @description  try to take over the world!
+// @author       You
+// @match        https://www.binance.com/zh-CN/futures/*
+// @icon         https://www.google.com/s2/favicons?sz=64&domain=binance.com
+// @grant        none
+// ==/UserScript==
+
+//隐藏抬头
+//document.getElementById('mainHeader').style.display="none";
+//隐藏买入
+
+
+window.setTimeout(setInputValue,1000);
+window.setTimeout(setHBview,6000);
+var sell_but; //做空按钮
+/* 隐藏做多  */
+function setInputValue(){
+    //设置form属性
+    //var forms = document.getElementsByTagName('form');
+    //forms[0].autocomplete = 'on';
+
+
+    var buts = document.getElementsByTagName('button');
+    /*
+    buts[3].style.display="none";
+    alert(buts[3].innerHTML);
+    */
+    try{
+        for(var i=0 in buts){
+            var but = buts[i];
+            var but_innerText = but.innerText;
+            //alert(but_innerText);
+            if('买入/做多' == but_innerText || '买入/开多' == but_innerText || '开多' == but_innerText || '买入' == but_innerText ){
+                but.style.display="none";
+            }
+            if('卖出/做空' == but_innerText || '卖出/开空' == but_innerText || '卖出' == but_innerText || '做空' == but_innerText ){
+                sell_but = but;
+            }
+        }
+    } catch(error) {
+        // alert(error);
+    }
+}
+
+
+/* 隐藏回报率 */
+function setHBview(){
+    var spans = document.getElementsByTagName('span');
+    try{
+        /*
+        alert(spans.length);
+        spans[spans.length-7].style.display="none";
+        */
+        for(var j=60 in spans){
+            var span = spans[j];
+            span.style.display="none";
+        }
+    } catch(error) {
+        // alert(error);
+    }
+}
+
+//循环获取报价
+
+window.setInterval(getPrice,6000);
+
+var num = 16;
+
+/* 获取报价  */
+var now_price = 0;
+function getPrice(){
+    var divs = document.getElementsByTagName('div');
+    //当前价格
+    now_price = divs[232].innerHTML;
+    //alert("当前价："+now_price);
+    //24小时最高价
+    var highest_24h_price = divs[260].innerHTML;
+    //alert("24H Highest：" + highest_24h_price);
+    //24小时最低价
+    var lowest_24h_price = divs[263].innerHTML;
+    //alert("24H Lowest：" + lowest_24h_price);
+    var limitPrice_input = document.getElementsByName('limitPrice')[0];
+    //limitPrice_input.click();
+    limitPrice_input.value = now_price;
+
+/*
+    //设置止赢价格
+    var takeProfitStopPrice = now_price*0.999;
+    takeProfitStopPrice = takeProfitStopPrice.toFixed(3);
+
+    var takeProfitStopPrice_input = document.getElementsByName('takeProfitStopPrice')[0];
+    takeProfitStopPrice_input.onclick = function(){
+        takeProfitStopPrice_input.value = takeProfitStopPrice;
+    }
+    takeProfitStopPrice_input.click();
+
+*/
+
+/*
+    try{
+        for(var j=233;j<300;j++){
+            var div = divs[j];
+            alert('['+j+']'+div.innerHTML);
+        }
+    } catch(error) {
+        // alert(error);
+    }
+*/
+}
+
+window.setTimeout(commitOrder,9000);
+
+/* 下单 */
+function commitOrder(){
+    //设置订单数量
+    var unitAmount_input = document.getElementsByName('unitAmount')[0];
+    unitAmount_input.click();
+    unitAmount_input.value = num;
+
+
+
+
+  //  const ke = new KeyboardEvent('keydown',{bubbles:true,cancelable:true,keyCode:103});
+  //  unitAmount_input.dispatchEvent(ke);
+
+  // alert('开始下单');
+    const e = new MouseEvent('click',{view:window,bubbles:true,cancelable:true});
+    sell_but.dispatchEvent(e);
+
+
+
+    /*
+
+
+
+    var event_ = document.createEvent('Event');
+    event_.initEvent('keydown', true, false);   //注意这块触发的是keydown事件，在awx的ui源码中bind监控的是keypress事件，所以这块要改成keypress
+    event_ = Object.assign(event, {
+        ctrlKey: false,
+        metaKey: false,
+        altKey: false,
+        which: 13,
+        keyCode: 13,
+        key: 'Enter',
+        code: 'Enter'
+    });
+    sell_but.focus();
+    sell_but.dispatchEvent(event);
+*/
+
+    //alert(unitAmount_input.value+"--"+takeProfitStopPrice);
+    try{
+        //sell_but.onclick = function(){
+            //sell_but.click();
+           // alert(unitAmount_input.value+"--"+takeProfitStopPrice);
+       // }
+      //  sell_but.click();
+    } catch(error) {
+         alert(error);
+    }
+}
+
+
+
+
+
