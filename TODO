@@ -3,3 +3,6 @@
 练习接收函数参数
 练习mapping(keyType => valueType)
 练习struct
+constant //常量，在编译时赋值（在写程序的时候）
+immutable //在部署时，可在构造函数中赋值，可获取部署时的全局变量如msg.sender ;string和bytes不能为immutable
+constructor
