@@ -1,9 +1,10 @@
-练习数组
-练习error（require、revert、assert）;自定义抛出error信息;
-练习接收函数参数
-练习mapping(keyType => valueType)
+bool\uint\address\bytes\string
+error（require、revert、assert）;自定义抛出error信息;
+mapping(keyType => valueType)
 struct
 constant //常量，在编译时赋值（在写程序的时候）
 constructor
 immutable //在部署时，可在构造函数中赋值，可获取部署时的全局变量如msg.sender ;string和bytes不能为immutable
+imodifier
+event
 
