@@ -1,17 +1,27 @@
 bool\uint\address\bytes\string
 mapping(keyType => valueType)
+
 public\private\internal\external
 pure\view
+
 error（require、revert、assert）;自定义抛出error信息;
-struct
+
 constant //常量，在编译时赋值（在写程序的时候）
 constructor
 immutable //在部署时，可在构造函数中赋值，可获取部署时的全局变量如msg.sender ;string和bytes不能为immutable
 imodifier
 event
+struct
+interface
+
 is
 virtual
 override
-interface
+
 payable
+receive
+fallback
+transfer
+send
+call
 balance
