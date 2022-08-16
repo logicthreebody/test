@@ -25,3 +25,12 @@ transfer
 send
 call
 balance
+
+delegatecall
+salt
+try / catch
+library
+
+
+
+
