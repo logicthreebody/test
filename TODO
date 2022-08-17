@@ -31,6 +31,14 @@ salt
 try / catch
 library
 
+keccak256(abi.encodePacked(,,,)) //hash运算
+abi.encode(x)
+abi.encodeWithSignature("methName(para)",v); //调用合约函数
+
+selfdestruct(_address)//删除合约
+
+selector
+
 
 
 
