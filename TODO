@@ -38,6 +38,7 @@ abi.encodeWithSignature("methName(para)",v); //调用合约函数
 selfdestruct(_address)//删除合约
 
 selector
+ERC20
 
 
 
