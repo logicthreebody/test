@@ -43,6 +43,8 @@ ERC20 //9个函数、2个事件
 ERC721 //16函数、3个事件
 ERC1155 //10个函数、4个事件
 
+-javaagent:C:\Users\Administrator\Downloads\jihuo-tool\ja-netfilter.jar=jetbrains
+
 
 
 
